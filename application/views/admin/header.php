@@ -22,6 +22,22 @@
             font-size: 1.3em;
             padding: 0.8em;
         }
+
+        .user-list:hover {
+            background-color: #ECF0F1;
+        }
+
+        .user-list {
+            /*background-color: #ECF0F1;*/
+            /*border-radius: 0.3em;*/
+            padding: 0.4em;
+            /*margin-bottom: 0.8em;*/
+        }
+
+        .user-list-item {
+            font-weight: bold;
+            font-size: 1.3em;
+        }
     </style>
 </head>
 <body>

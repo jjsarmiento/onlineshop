@@ -16,6 +16,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //type
 
 class Model_User extends CI_Model {
+    public function getAllUsers(){
+        return $this->db
+            ->select('*')
+            ->from('users')
+            ->order_by('date_added', 'DESC')
+            ->get()
+            ->result();
+    }
+
     public function checkUser($email){
         $this->db
             ->select('*')
