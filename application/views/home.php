@@ -53,7 +53,8 @@
                 <?php
                     foreach($products as $product){
                     ?>
-                        <div class="col-sm-4 col-lg-4 col-md-4">
+<!--                        <div class="col-sm-4 col-lg-4 col-md-4">-->
+                        <div class="col-sm-3 col-lg-3 col-md-3">
                             <div class="thumbnail">
                                 <div class="thumbnailx">
                                     <img src="<?=$product->img?>" alt="">
