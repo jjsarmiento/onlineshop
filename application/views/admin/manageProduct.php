@@ -9,7 +9,7 @@
         <div class="col-md-3">
             <!--            <p class="lead">Shop Name</p>-->
             <div class="list-group">
-                <a href="<?=base_url().'Admin/home'?>" class="list-group-item"><i class="fa fa-home"></i> Home</a>
+<!--                <a href="--><?//=base_url().'Admin/home'?><!--" class="list-group-item"><i class="fa fa-home"></i> Home</a>-->
                 <a href="<?=base_url().'Admin/addProduct'?>" class="list-group-item"><i class="fa fa-plus"></i> Add Product</a>
                 <a href="<?=base_url().'Admin/manageProduct'?>" class="list-group-item"><i class="fa fa-edit"></i> Manage Products</a>
 <!--                <a href="--><?//=base_url().'Admin/manageUsers'?><!--" class="list-group-item"><i class="fa fa-users"></i> Manage Users</a>-->
@@ -36,14 +36,14 @@
                             <div class="thumbnail">
                                 <img src="<?=$product->img?>" style="width: 320px; height: 150px;" alt="">
                                 <div class="caption">
-                                    <h4 class="pull-right">P<?=$product->price?>.00</h4>
-                                    <h4><a href="<?=base_url().'Admin/viewProduct/'.$product->id?>"><?=$product->name?></a>
-                                    </h4>
-                                    <p><?=$product->description?></p>
+                                    <h4><a href="<?=base_url().'Admin/viewProduct/'.$product->id?>"><?=$product->name?></a></h4>
+                                    <span style="font-weight: bold;">P<?=$product->price?>.00</span>
+                                    <p style="margin-top: 0.3em;"><?=$product->description?></p>
                                 </div>
                                 <div class="ratings">
 <!--                                    <p class="pull-right">15 reviews</p>-->
-                                    <p>
+                                    <hr style="margin: 0; margin-top: 0.4em;"/>
+                                    <p style="padding: 0; margin: 0; margin-top: 0.4em; margin-bottom: 0.4em;">
                                         <a class="action-btns action-btns-delete" data-href="<?=base_url()?>Admin/deleteProduct/<?=$product->id?>"><i class="fa fa-trash"></i></a>
                                         <a class="action-btns" href="<?=base_url()?>Admin/editProduct/<?=$product->id?>"><i class="fa fa-edit"></i></a>
 <!--                                        <span class="glyphicon glyphicon-star"></span>-->

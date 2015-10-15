@@ -3,7 +3,7 @@
         <div class="col-md-3">
             <!--            <p class="lead">Shop Name</p>-->
             <div class="list-group">
-                <a href="<?=base_url().'Admin/home'?>" class="list-group-item"><i class="fa fa-home"></i> Home</a>
+<!--                <a href="--><?//=base_url().'Admin/home'?><!--" class="list-group-item"><i class="fa fa-home"></i> Home</a>-->
                 <a href="<?=base_url().'Admin/addProduct'?>" class="list-group-item"><i class="fa fa-plus"></i> Add Product</a>
                 <a href="<?=base_url().'Admin/manageProduct'?>" class="list-group-item"><i class="fa fa-edit"></i> Manage Products</a>
 <!--                <a href="--><?//=base_url().'Admin/manageUsers'?><!--" class="list-group-item"><i class="fa fa-users"></i> Manage Users</a>-->

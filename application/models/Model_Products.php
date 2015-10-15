@@ -44,4 +44,12 @@ class Model_Products extends CI_Model {
             ->where('id', $id)
             ->delete();
     }
+
+    public function updateProduct($id, $data){
+        $this->db
+            ->select('*')
+            ->from('products')
+            ->where('id', $id)
+            ->update('products', $data);
+    }
 }

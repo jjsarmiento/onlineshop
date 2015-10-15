@@ -3,7 +3,7 @@
         <div class="col-md-3">
             <!--            <p class="lead">Shop Name</p>-->
             <div class="list-group">
-                <a href="<?=base_url().'Admin/home'?>" class="list-group-item"><i class="fa fa-home"></i> Home</a>
+<!--                <a href="--><?//=base_url().'Admin/home'?><!--" class="list-group-item"><i class="fa fa-home"></i> Home</a>-->
                 <a href="<?=base_url().'Admin/addProduct'?>" class="list-group-item"><i class="fa fa-plus"></i> Add Product</a>
                 <a href="<?=base_url().'Admin/manageProduct'?>" class="list-group-item"><i class="fa fa-edit"></i> Manage Products</a>
 <!--                <a href="--><?//=base_url().'Admin/manageUsers'?><!--" class="list-group-item"><i class="fa fa-users"></i> Manage Users</a>-->
@@ -17,7 +17,7 @@
                     <div class="col-md-6">
                         <h3>Product Details</h3>
                         <input type="text" class="form-control" name="prodName" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product name here"/>
-                        <textarea class="form-control" name="prodDesc" maxlength="150" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product description here. Maximum of 150 characters"></textarea>
+                        <textarea rows="4" class="form-control" name="prodDesc" maxlength="150" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product description here. Maximum of 150 characters"></textarea>
                         <input type="number" class="form-control" name="prodQty" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product quantity here"/>
                         <input type="number" class="form-control" name="prodPrice" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product price here (each)"/>
                         <div class="well">
@@ -32,7 +32,9 @@
                                 <span style="color:red">*</span> Image file size must be below 4mb<br/>
                                 <span style="">*</span> Recommended dimensions must be 320x150 Width = 320, Height = 150
                             </span>
-                            <input name="prodImg" type="file" accept="image/*" required="required"/>
+                            <br/>
+                            <br/>
+                            <input class="form-control" name="prodImg" type="file" accept="image/*" required="required"/>
                         </div>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Add Product</button>
                     </div>

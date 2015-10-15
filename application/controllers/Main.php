@@ -6,13 +6,16 @@ class Main extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('Model_User');
+        $this->load->model('Model_Products');
     }
 
     public function index(){
         $this->exclusiveRouteFor('USER', @$_SESSION['type']);
 
+        $data['products'] = $this->Model_Products->getAllProducts();
+
         $this->load->view('header');
-        $this->load->view('home');
+        $this->load->view('home', $data);
         $this->load->view('footer');
     }
 

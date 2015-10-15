@@ -102,4 +102,20 @@ class Admin extends CI_Controller {
         $this->load->view('admin/editItem', $data);
         $this->load->view('admin/footer');
     }
+
+    public function doEditProduct(){
+        $prodId = $this->input->post('prodId');
+        $data = array (
+            'id'            =>  $prodId,
+            'name'          =>  $this->input->post('prodName'),
+            'description'   =>  $this->input->post('prodDesc'),
+            'qty'           =>  $this->input->post('prodQty'),
+            'price'         =>  $this->input->post('prodPrice'),
+            'add_info'      =>  $this->input->post('prodAddInfo')
+        );
+
+        $this->Model_Products->updateProduct($prodId, $data);
+        $_SESSION['successMsg'] = '<span style="color: green;"><i class="fa fa-check"></i> Edit Successful</span>';
+        redirect(base_url().'Admin/editProduct/'.$prodId);
+    }
 }

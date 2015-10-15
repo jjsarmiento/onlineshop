@@ -19,6 +19,10 @@
                     $('#registerModal').modal('show');
                 });
 
+                $('.addCart-nosess').click(function(){
+                    $('#loginModal').modal('show');
+                });
+
                 $('#userBtn').click(function(){
                     $('#userModal').modal('show');
                 });
@@ -33,6 +37,29 @@
             .modal-heading {
                 font-size: 1.3em;
                 padding: 0.8em;
+            }
+
+            .thumbnailx {
+                cursor: pointer;
+                position: relative;
+                /*width: 175px;*/
+                height: 150px;
+                overflow: hidden;
+                margin-bottom: 0.6em;
+                background-color: #333333;
+                /*-moz-box-shadow:    3px 3px 5px 6px #ccc;*/
+                /*-webkit-box-shadow: 3px 3px 5px 6px #ccc;*/
+            }
+
+            .thumbnailx img {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                height: 100%;
+                width: auto;
+                /*-webkit-transform: translate(-50%,-50%);*/
+                /*-ms-transform: translate(-50%,-50%);*/
+                transform: translate(-50%,-50%);
             }
         </style>
     </head>

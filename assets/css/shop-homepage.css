@@ -22,12 +22,13 @@ body {
 }
 
 .caption {
-    height: 130px;
+    height: 140px !important;
     overflow: hidden;
 }
 
 .caption h4 {
     white-space: nowrap;
+    margin-bottom: 0;
 }
 
 .thumbnail img {
