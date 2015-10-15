@@ -20,10 +20,16 @@
                         <textarea class="form-control" name="prodDesc" maxlength="150" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product description here. Maximum of 150 characters"></textarea>
                         <input type="number" class="form-control" name="prodQty" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product quantity here"/>
                         <div class="well">
+                            <?php
+                                if(isset($_SESSION['errorMsg'])){
+                                    echo '<span style="color: red;"><i class="fa fa-warning"></i> '.$_SESSION['errorMsg'].'</span><br/><br/>';
+                                    unset($_SESSION['errorMsg']);
+                                }
+                            ?>
                             Upload Product Image<Br/>
                             <span style="color: #7F8C8D; font-size: 0.9em;">
                                 <span style="color:red">*</span> Image file size must be below 4mb<br/>
-                                <span style="color:red">*</span> Dimensions must be 320x150 Width = 320, Height = 150
+                                <span style="">*</span> Recommended dimensions must be 320x150 Width = 320, Height = 150
                             </span>
                             <input name="prodImg" type="file" accept="image/*" required="required"/>
                         </div>

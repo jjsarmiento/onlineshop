@@ -17,5 +17,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Model_Products extends CI_Model {
     public function addProduct($data){
         $this->db->insert('products', $data);
+        return $this->db->insert_id();
+    }
+
+    public function getProductData($id){
+        return $this->db
+                ->select('*')
+                ->from('products')
+                ->where('id', $id)
+                ->get()
+                ->row_array();
     }
 }

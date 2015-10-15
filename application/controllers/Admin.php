@@ -10,6 +10,7 @@ class Admin extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('Model_User');
+        $this->load->model('Model_Products');
         $this->load->helper('form');
         $this->exclusiveRouteFor('ADMIN', @$_SESSION['type']);
     }
@@ -40,18 +41,47 @@ class Admin extends CI_Controller {
     }
 
     public function doAddProduct(){
-        $this->load->model('Model_Products');
+
+        $path_parts = pathinfo($_FILES['prodImg']["name"]);
+        $extension = $path_parts['extension'];
+        $newfilename= uniqid().".".$extension;
+
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '4194304';
+        $config['file_name'] = $newfilename;
+//        $config['max_width'] = '1024';
+//        $config['max_height'] = '768';
+        $this->load->library('upload', $config);
+
+        if($this->upload->do_upload('prodImg')){
+            $data = array('upload_data' => $this->upload->data());
+        }else{
+            $_SESSION['errorMsg'] = $this->upload->display_errors();
+            redirect(base_url().'Admin/addProduct');
+        }
 
         $productData = array(
             'name'          =>  $this->input->post('prodName'),
             'description'   =>  $this->input->post('prodDesc'),
             'qty'           =>  $this->input->post('prodQty'),
             'add_info'      =>  $this->input->post('prodAddInfo'),
-            'img'           =>  base_url().'uploads/'.$_FILES["prodImg"]["name"]
+            'img'           =>  base_url().'uploads/'.$newfilename
         );
 
+        $productInsertId = $this->Model_Products->addProduct($productData);
+        redirect(base_url().'Admin/viewProduct/'.$productInsertId);
 
-        var_dump($_FILES["prodImg"]);
-//        $this->Model_Products->addProduct($productData);
+//        if($img['size'] >= 4194304){
+//            $_SESSION['errorMsg'] = 'File size is too large. Must be below 4mb';
+//            redirect(base_url().'Admin/addProduct');
+//        }
+    }
+
+    public function viewProduct($id){
+        $prodData['prod'] = $this->Model_Products->getProductData($id);
+        $this->load->view('admin/header');
+        $this->load->view('admin/viewProduct', $prodData);
+        $this->load->view('admin/footer');
     }
 }
