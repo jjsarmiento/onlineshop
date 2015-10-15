@@ -19,6 +19,7 @@
                         <input type="text" class="form-control" name="prodName" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product name here"/>
                         <textarea class="form-control" name="prodDesc" maxlength="150" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product description here. Maximum of 150 characters"></textarea>
                         <input type="number" class="form-control" name="prodQty" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product quantity here"/>
+                        <input type="number" class="form-control" name="prodPrice" required="required" style="margin-bottom: 0.8em;" placeholder="Enter product price here (each)"/>
                         <div class="well">
                             <?php
                                 if(isset($_SESSION['errorMsg'])){

@@ -14,10 +14,22 @@
             $('#userBtn').click(function(){
                 $('#userModal').modal('show');
             });
+
+            $('.action-btns-delete').click(function(){
+                if(confirm('Do you really want to delete this product? All associated data with this product will also be deleted.')){
+                    location.href = $(this).data('href');
+                }
+            });
         })
     </script>
 
     <style>
+        .action-btns {
+            font-size: 1.3em;
+            margin: 0.3em;
+            cursor: pointer;
+        }
+
         .modal-heading {
             font-size: 1.3em;
             padding: 0.8em;

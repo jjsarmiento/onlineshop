@@ -16,9 +16,10 @@ class Admin extends CI_Controller {
     }
 
     public function home(){
-        $this->load->view('admin/header');
-        $this->load->view('admin/index');
-        $this->load->view('admin/footer');
+//        $this->load->view('admin/header');
+//        $this->load->view('admin/index');
+//        $this->load->view('admin/footer');
+        redirect(base_url().'Admin/manageProduct');
     }
 
     public function addProduct(){
@@ -28,8 +29,11 @@ class Admin extends CI_Controller {
     }
 
     public function manageProduct(){
+        $data = array(
+            'products'  =>  $this->Model_Products->getAllProducts()
+        );
         $this->load->view('admin/header');
-        $this->load->view('admin/manageProduct');
+        $this->load->view('admin/manageProduct', $data);
         $this->load->view('admin/footer');
     }
 
@@ -65,6 +69,7 @@ class Admin extends CI_Controller {
             'name'          =>  $this->input->post('prodName'),
             'description'   =>  $this->input->post('prodDesc'),
             'qty'           =>  $this->input->post('prodQty'),
+            'price'         =>  $this->input->post('prodPrice'),
             'add_info'      =>  $this->input->post('prodAddInfo'),
             'img'           =>  base_url().'uploads/'.$newfilename
         );
@@ -82,6 +87,19 @@ class Admin extends CI_Controller {
         $prodData['prod'] = $this->Model_Products->getProductData($id);
         $this->load->view('admin/header');
         $this->load->view('admin/viewProduct', $prodData);
+        $this->load->view('admin/footer');
+    }
+
+    public function deleteProduct($id){
+        $this->Model_Products->deleteProduct($id);
+        $_SESSION['successMsg'] = '<i class="fa fa-check"></i> Product has been deleted';
+        redirect(base_url().'Admin/manageProduct');
+    }
+
+    public function editProduct($id){
+        $data['product'] = $this->Model_Products->getProductData($id);
+        $this->load->view('admin/header');
+        $this->load->view('admin/editItem', $data);
         $this->load->view('admin/footer');
     }
 }

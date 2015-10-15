@@ -28,4 +28,20 @@ class Model_Products extends CI_Model {
                 ->get()
                 ->row_array();
     }
+
+    public function getAllProducts(){
+        return $this->db
+                ->select('*')
+                ->from('products')
+                ->get()
+                ->result();
+    }
+
+    public function deleteProduct($id){
+        $this->db
+            ->select('*')
+            ->from('products')
+            ->where('id', $id)
+            ->delete();
+    }
 }
