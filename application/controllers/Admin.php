@@ -30,7 +30,7 @@ class Admin extends CI_Controller {
 
     public function manageProduct(){
         $data = array(
-            'products'  =>  $this->Model_Products->getAllProducts()
+            'products'  =>  $this->Model_Products->getAllProducts('')
         );
         $this->load->view('admin/header');
         $this->load->view('admin/manageProduct', $data);

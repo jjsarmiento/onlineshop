@@ -11,6 +11,12 @@
 
         <script>
             $(document).ready(function(){
+                $('.deleteCartProduct').click(function(e){
+                    if(!confirm('Are you sure you want to remove this product from your cart?')){
+                        e.preventDefault();
+                    }
+                });
+
                 $('#loginBtn').click(function(){
                     $('#loginModal').modal('show');
                 });
@@ -25,6 +31,31 @@
 
                 $('#userBtn').click(function(){
                     $('#userModal').modal('show');
+                });
+
+                $('#cartBtn').click(function(){
+                    var prices  = $('#in-cart tbody tr td[class="in-cart-tprice"]'),
+                        total   = 0;
+
+                    for(var i=0;i < prices.size(); i++){
+                        total   =   parseFloat(total) + parseFloat(prices.eq(i).text().replace(/P/g, ''));
+                    }
+
+                    $('#checkoutPrice').empty().append('Checkout Price : <span style="font-weight: bold; color: red;">P'+total+'</span>');
+                    $('#cartModal').modal('show');
+                });
+
+                $('.addCart').click(function(){
+                    $('#addCart-prod-name').empty().append($(this).data('pname'));
+                    $('<img class="portrait" src="'+ $(this).attr('data-img') +'">').load(function() {
+                        $(this).appendTo($('#modal-img'));
+                    });
+                    $('#prodPrice').val($(this).data('price'));
+                    $('#prodId').val($(this).data('prodid'));
+                    $('#prodName').val($(this).data('pname'));
+                    $('#prod-price').empty().append('P'+$(this).data('price')+' ea');
+                    $('#cartQty').attr('max', $(this).data('qty'));
+                    $('#addCart').modal('show');
                 });
 
                 if($('#registerErrorMsg').size() != 0){
@@ -82,18 +113,12 @@
                     <ul class="nav navbar-nav">
                         <?php
                             if(isset($_SESSION['logged_in'])){
-                                echo '<li><a href="#" id="userBtn">'.$_SESSION['firstname'].'</a></li>';
+                                echo '<li><a href="#" id="userBtn"><i class="fa fa-user"></i> Welcome '.$_SESSION['firstname'].'</a></li>';
+                                echo '<li><a><button class="btn btn-danger" style="margin: 0;" id="cartBtn"><i class="fa fa-cart-plus"></i></button></a></li>';
                             }else{
                                 echo '<li><a href="#" id="loginBtn">Login</a></li>';
                             }
                         ?>
-
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

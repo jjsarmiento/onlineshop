@@ -63,6 +63,7 @@
                                     <h4 class="pull-right">P<?=$product->price?></h4>
                                     <h4><a href="#"><?=$product->name?></a>
                                     </h4>
+                                    <span style="color: #27AE60; font-weight: bold;"><?=$product->qty?> pc(s) left</span>
                                     <br/>
                                     <p><?=$product->description?></p>
                                 </div>
@@ -70,7 +71,7 @@
                                     <p>
                                         <?php
                                             if(isset($_SESSION['logged_in'])){
-                                                echo '<button class="btn btn-danger"><i class="fa fa-cart-plus"></i> Add to Cart</button>';
+                                                echo '<button type="submit" class="btn btn-danger addCart" data-qty="'.$product->qty.'" data-img="'.$product->img.'" data-pname="'.$product->name.'" data-price="'.$product->price.'" data-prodId="'.$product->id.'"><i class="fa fa-cart-plus"></i> Add to Cart</button>';
                                             }else{
                                                 echo '<button class="btn btn-danger addCart-nosess"><i class="fa fa-cart-plus"></i> Add to Cart</button>';
                                             }

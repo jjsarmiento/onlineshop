@@ -34,7 +34,9 @@
                     ?>
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
-                                <img src="<?=$product->img?>" style="width: 320px; height: 150px;" alt="">
+                                <div class="thumbnailx">
+                                    <img src="<?=$product->img?>" style="" alt="">
+                                </div>
                                 <div class="caption">
                                     <h4><a href="<?=base_url().'Admin/viewProduct/'.$product->id?>"><?=$product->name?></a></h4>
                                     <span style="font-weight: bold;">P<?=$product->price?>.00</span>

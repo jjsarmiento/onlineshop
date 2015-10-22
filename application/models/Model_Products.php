@@ -29,12 +29,21 @@ class Model_Products extends CI_Model {
                 ->row_array();
     }
 
-    public function getAllProducts(){
-        return $this->db
-                ->select('*')
-                ->from('products')
+    public function getAllProducts($type){
+        $query = $this->db
+                    ->select('*')
+                    ->from('products');
+
+        if($type == 'USER'){
+            return $query
+                    ->where('qty >', 0)
+                    ->get()
+                    ->result();
+        }else{
+            return $query
                 ->get()
                 ->result();
+        }
     }
 
     public function deleteProduct($id){
@@ -51,5 +60,25 @@ class Model_Products extends CI_Model {
             ->from('products')
             ->where('id', $id)
             ->update('products', $data);
+    }
+
+    public function decreaseQty($id, $qty){
+        $newQty = $this->getQty($id)['qty'] - $qty;
+//        var_dump($newQty);
+
+        $this->db
+            ->select('*')
+            ->from('products')
+            ->where('id', $id)
+            ->update('products', array('qty' => $newQty));
+    }
+
+    function getQty($id){
+        return $this->db
+                ->select('qty')
+                ->from('products')
+                ->where('id', $id)
+                ->get()
+                ->row_array();
     }
 }

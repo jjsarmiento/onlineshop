@@ -11,9 +11,10 @@ class Main extends CI_Controller {
 
     public function index(){
         $this->exclusiveRouteFor('USER', @$_SESSION['type']);
+        $this->load->model('Model_Cartsession');
 
-        $data['products'] = $this->Model_Products->getAllProducts();
-
+        $data['products'] = $this->Model_Products->getAllProducts('USER');
+        $data['cart'] = $this->Model_Cartsession->getCartContent(@$_SESSION['id']);
         $this->load->view('header');
         $this->load->view('home', $data);
         $this->load->view('footer');
@@ -87,6 +88,40 @@ class Main extends CI_Controller {
 
     public function logout(){
         $this->session->sess_destroy();
-        redirect('/');
+        redirect(base_url());
+    }
+
+    public function addToCart($id){
+        $this->load->model('Model_Cartsession');
+        $data = array(
+            'product_id'    =>  $this->input->post('prodId'),
+            'user_id'       =>  $_SESSION['id'],
+            'cart_qty'      =>  $this->input->post('cartQty'),
+            'product_name'  =>  $this->input->post('prodName'),
+            'price_ea'      =>  $this->input->post('prodPrice'),
+            'price_total'   =>  $this->input->post('prodPrice')*$this->input->post('cartQty')
+        );
+        $this->Model_Cartsession->addToCart($data);
+        redirect(base_url());
+    }
+
+    public function deleteCartProduct($id){
+        $this->load->model('Model_Cartsession');
+        $this->Model_Cartsession->removeCartProduct($id);
+        redirect(base_url());
+    }
+
+    public function checkout(){
+        $this->load->model('Model_Cartsession');
+        $prodId = $this->input->post('cart_prodId');
+        $prodQty = $this->input->post('cart_prodQty');
+        $cartId = $this->input->post('cart_id');
+
+        for($i = 0; $i < count($prodId); $i++){
+            $this->Model_Products->decreaseQty($prodId[$i], $prodQty[$i]);
+            $this->Model_Cartsession->deleteCartSession($cartId[$i]);
+        }
+
+        redirect(base_url());
     }
 }
